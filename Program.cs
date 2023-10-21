@@ -1,52 +1,17 @@
-﻿double numero01 = 0;
-double numero02 = 0;
+﻿double numero1 = 0;
+double numero2 = 0;
 double resultado = 0;
 string operacao;
 string sair;
 
-ExibeMenu();
 
-ExibeOpcao();
 
 do
 {
-    switch (operacao)
-    {
-        case "+":
-            resultado = Soma(numero01, numero02);
-            Console.Write("O valor da soma é: ");
-            break;
-        case "-":
-            resultado = Subtracao(numero01, numero02);
-            Console.Write("O valor da subtração é: ");
-            break;
-        case "/":
-            resultado = Divisao(numero01, numero02);
-            Console.Write("O valor da divisão é: ");
-            break;
-        case "*":
-            resultado = Multiplicacao(numero01, numero02);
-            Console.Write("O valor da multiplicação é: ");
-            break;
-        case "^":
-            resultado = Exponeciacao(numero01, numero02);
-            Console.Write("O valor da exponeciação é: ");
-            break;
-        case "R":
-            numero02 = Convert.ToDouble(numero01);
-            resultado = Raiz(numero02);
-            Console.WriteLine($"A raiz quadrada de {numero02} é: ");
-            break;
-        case "r":
-            numero02 = Convert.ToDouble(numero01);
-            resultado = Raiz(numero02);
-            Console.WriteLine($"A raiz quadrada de {numero02} é: ");
-            break;
+    ExibeMenu();
+    ExibeOpcao();
 
-        default:
-            Console.WriteLine("Operação incorreta!");
-            break;
-    }
+    resultado = ExecutaOperacao(operacao, numero1, numero2);
 
     Console.ForegroundColor = ConsoleColor.Green;
     Console.WriteLine("{0}", resultado);
@@ -58,7 +23,10 @@ do
     sair = Console.ReadLine().ToUpper();
 }
 while (sair != "S" && sair != "SIM");
-
+{
+    Console.WriteLine();
+    Console.WriteLine("\nVolte sempre!");
+}
 
 void ExibeMenu()
 {
@@ -91,14 +59,14 @@ Console.WriteLine();
 Console.WriteLine("Aguarde...");
 Console.WriteLine();
 
-numero01 = SolicitaNumero("primeiro");
+numero1 = SolicitaNumero("primeiro");
 
 Console.WriteLine("Escolha uma operação: ");
 Console.ForegroundColor = ConsoleColor.Green;
 Console.ResetColor();
 operacao = Console.ReadLine();
 
-numero02 = SolicitaNumero("segundo");
+numero2 = SolicitaNumero("segundo");
 Console.WriteLine();
 }
 
@@ -164,3 +132,46 @@ double Raiz (double radicando)
     return Raiz;
 }
 
+double ExecutaOperacao(string operacao, double numero01, double numero02)
+{
+         double resultado = 0;
+          switch (operacao)
+          {
+        case "+":
+            resultado = Soma(numero01, numero02);
+            Console.Write("O valor da soma é: ");
+            break;
+        case "-":
+            resultado = Subtracao(numero01, numero02);
+            Console.Write("O valor da subtração é: ");
+            break;
+        case "/":
+            resultado = Divisao(numero01, numero02);
+            Console.Write("O valor da divisão é: ");
+            break;
+        case "*":
+            resultado = Multiplicacao(numero01, numero02);
+            Console.Write("O valor da multiplicação é: ");
+            break;
+        case "^":
+            resultado = Exponeciacao(numero01, numero02);
+            Console.Write("O valor da exponeciação é: ");
+            break;
+        case "R":
+            numero02 = Convert.ToDouble(numero01);
+            resultado = Raiz(numero02);
+            Console.WriteLine($"A raiz quadrada de {numero02} é: ");
+            break;
+        case "r":
+            numero02 = Convert.ToDouble(numero01);
+            resultado = Raiz(numero02);
+            Console.WriteLine($"A raiz quadrada de {numero02} é: ");
+            break;
+
+        default:
+            Console.WriteLine("Operação incorreta!");
+            break;
+                        
+           }
+           return resultado;
+}
